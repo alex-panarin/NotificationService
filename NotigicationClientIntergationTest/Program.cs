@@ -29,7 +29,7 @@ namespace NotigicationClientIntergationTest
 
                 client.SendMessage(message);
             }
-            while (Console.KeyAvailable);
+            while (Console.Read() != (int)ConsoleKey.Enter);
 
             client.CloseConnection();
 

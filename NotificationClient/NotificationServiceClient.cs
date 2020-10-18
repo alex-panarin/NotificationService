@@ -62,11 +62,7 @@ namespace NotificationClient
                 recieveAction?.Invoke(_factory.Create(Notifications.Error, x.ToString()));
 
             }
-            finally
-            {
-                await CloseConnectionAsync();
-            }
-
+            
         }
         public void CloseConnection()
         {
@@ -160,7 +156,7 @@ namespace NotificationClient
                     while (!_cancellation.IsCancellationRequested)
                     {
 
-                        UdpReceiveResult result = await Client?.ReceiveAsync(); // Blocked operation
+                        UdpReceiveResult result = await Client.ReceiveAsync(); // Blocked operation
                         if (result == null)
                         {
                             _cancellation.Cancel(true);
