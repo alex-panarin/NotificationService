@@ -176,11 +176,19 @@ namespace NotificationClient
                             case Notifications.Connect:
                                 break;
                             case Notifications.Disconnect:
+
                                 await SendMessageAsync(Notifications.Error, "SERVER DISCONNECTED");
-                                _cancellation.Cancel();
+                                
+                                if (!_cancellation.IsCancellationRequested)
+                                {
+                                    _cancellation.Cancel();
+                                }
+
                                 break;
                             case Notifications.Notify:
+
                                 await SendMessageAsync(payload, false);
+
                                 break;
                             default:
                                 break;
